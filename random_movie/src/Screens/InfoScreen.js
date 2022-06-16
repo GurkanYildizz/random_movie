@@ -40,7 +40,7 @@ export default InfoScreen = () => {
                                 resizeMode="stretch"
                                 source={item}
                             />
-                            
+
 
                         </View>
                     );
@@ -52,15 +52,15 @@ export default InfoScreen = () => {
 
             />
 
-            <View style={{ backgroundColor: "black", height: "48%", borderRadius: 20, borderWidth: 5, borderStyle: "dotted", borderColor: "black", marginHorizontal: "3%", paddingHorizontal: "3%", paddingBottom: "3%",marginBottom:PixelRatio.getPixelSizeForLayoutSize(10) }}>
+            <View style={{ backgroundColor: "black", height: "48%", borderRadius: 20, borderWidth: 5, borderStyle: "dotted", borderColor: "black", marginHorizontal: "3%", paddingHorizontal: "3%", paddingBottom: "3%", marginBottom: PixelRatio.getPixelSizeForLayoutSize(10) }}>
                 <Text style={{ textAlign: "center", fontSize: PixelRatio.getFontScale() * 40, fontWeight: "bold", color: "red" }}>{route.params.name}</Text>
-                
+
                 <ScrollView>
                     <Text style={{ fontSize: PixelRatio.getFontScale() * 20, color: "white" }}>
                         {route.params.about}
                     </Text>
                 </ScrollView>
-               
+
             </View>
 
 
@@ -78,26 +78,22 @@ const styles = StyleSheet.create({
     },
     image_View: {
         width: Dimensions.get("screen").width / 1.05,
-     //  height: Dimensions.get("screen").height/2.5,
-     height:"90%",
-        marginHorizontal:PixelRatio.getPixelSizeForLayoutSize(4),
-        marginTop:PixelRatio.getPixelSizeForLayoutSize(5),
+        height: "90%",
+        marginHorizontal: PixelRatio.getPixelSizeForLayoutSize(4),
+        marginTop: PixelRatio.getPixelSizeForLayoutSize(5),
         borderRadius: 25,
-        borderStyle:"dotted",
-        borderColor:"black",
-        borderWidth:5,
-        justifyContent:"center",
-        alignContent:"center",
+        borderStyle: "dotted",
+        borderColor: "black",
+        borderWidth: 5,
+        justifyContent: "center",
+        alignContent: "center",
 
     },
 
     image: {
-        width:"100%",
-        
+        width: "100%",
         flex: 1,
         borderRadius: 25,
-        
-        
 
     },
 

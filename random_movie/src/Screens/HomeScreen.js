@@ -35,30 +35,30 @@ export default HomeScreen = () => {
     return <FilterAction />
 
 }
-let numberCount,setnumberCount;
+let numberCount, setnumberCount;
 const Data = SelectItems;
 const FilterAction = () => {
-    
-     [numberCount,setnumberCount] = useState(Data.count);
+
+    [numberCount, setnumberCount] = useState(Data.count);
 
     const [filterDataMovies, setfilterDataMovies] = useState(Data.movies.filter(a => a.id < "5"));
-  
-
-   
 
 
 
 
-return (
+
+
+
+    return (
         <SafeAreaView style={{ flex: 1 }}>
             <View style={styles.backGround}>
-                <View style={{ flexDirection: "row",width:Dimensions.get("screen").width,marginTop:"3%" }}>
-                  
-                    <Choose whichDropdown={0}  data={Data.type.filter(a=>Data.movies.find(b=>b.type===a||a=="Mix"))}  default_value={"Choose Type"} />
-                 
-                    
-                    <Choose whichDropdown={1}  data={numberCount} default_value={"Select Movie Quantity"} />
-                   
+                <View style={{ flexDirection: "row", width: Dimensions.get("screen").width, marginTop: "3%" }}>
+
+                    <Choose whichDropdown={0} data={Data.type.filter(a => Data.movies.find(b => b.type === a || a == "Mix"))} default_value={"Choose Type"} />
+
+
+                    <Choose whichDropdown={1} data={numberCount} default_value={"Select Movie Quantity"} />
+
 
                 </View>
                 <View style={styles.button_view} >
@@ -66,24 +66,24 @@ return (
                     <TouchableHighlight
 
                         style={styles.button}
-                        onPress={() => {//random(Data.movies.length)
+                        onPress={() => {
                             const dt = [];
                             let filterTypeMovies = Data.movies;
                             if (movieType != "Mix") {
                                 filterTypeMovies = Data.movies.filter(a => a.type == movieType)
-                                if (filterTypeMovies.length < 1) filterTypeMovies =Data.movies;
+                                if (filterTypeMovies.length < 1) filterTypeMovies = Data.movies;
                             }
                             else if (movieType == "Mix") { filterTypeMovies = Data.movies }
 
-                            
 
-                           
-                                const rd = random(filterTypeMovies.length)
 
-                                for (let i = 0; i < rd.length; i++) {
 
-                                    dt.push(filterTypeMovies[rd[i]])
-                                
+                            const rd = random(filterTypeMovies.length)
+
+                            for (let i = 0; i < rd.length; i++) {
+
+                                dt.push(filterTypeMovies[rd[i]])
+
                             }
                             setfilterDataMovies(dt)
 
@@ -108,20 +108,14 @@ const styles = StyleSheet.create({
 
         flexGrow: 1,
         backgroundColor: "grey",
-        // alignSelf: "center",
-
-
-
 
     },
     button_view: {
-        //height:Dimensions.get("screen").height/7.2,
+
         height: "12%",
         width: "90%",
-        //width:Dimensions.get("screen").width/1.2,
         marginHorizontal: "5%",
         marginTop: "5%",
-        //backgroundColor: "red",
         borderWidth: 5,
         borderRadius: 20,
         borderStyle: 'dashed',
@@ -143,19 +137,14 @@ const styles = StyleSheet.create({
 
     button: {
         flex: 1,
-      buttonStyle:{}
+        buttonStyle: {}
     },
 
     rank_card_view: {
+
         backgroundColor: "black",
         marginVertical: Dimensions.get("screen").height / 30,
-
-        /* marginLeft: Dimensions.get("screen").width / 10,
-         
-         marginRight: Dimensions.get("screen").width / 10,*/
-
         marginHorizontal: Dimensions.get("screen").width / 20,
-
         width: Dimensions.get("screen").width / 1.1,
         height: "85%",
         alignItems: "center",
@@ -164,7 +153,7 @@ const styles = StyleSheet.create({
         borderColor: "white",
         borderStyle: 'dashed',
         borderRadius: 30,
-        
+
     },
 
 })
@@ -172,36 +161,32 @@ const styles = StyleSheet.create({
 let selectcountitem = 0;
 const Choose = (props) => {
     return (
-
         <View style={[props.sty]}>
             <SelectDropdown
-            buttonStyle={{backgroundColor:"black",borderRadius:20,borderWidth:3,borderColor:"white" }}
-            buttonTextStyle={{color:"white"}}
-            rowStyle={{backgroundColor:"black",borderRadius:20,borderWidth:2,borderColor:"white"}}
-            rowTextStyle={{color:"white"}}
-            dropdownStyle={{backgroundColor:"transparent"}}
-           
+                buttonStyle={{ backgroundColor: "black", borderRadius: 20, borderWidth: 3, borderColor: "white" }}
+                buttonTextStyle={{ color: "white" }}
+                rowStyle={{ backgroundColor: "black", borderRadius: 20, borderWidth: 2, borderColor: "white" }}
+                rowTextStyle={{ color: "white" }}
+                dropdownStyle={{ backgroundColor: "transparent" }}
+
                 data={props.data}
-                
-                
+
+
                 onSelect={(item, index) => {
                     if (props.whichDropdown === 0) {
-                        movieType = item   
-                        setnumberCount(((Data.movies.filter(a=>a.type===movieType).length)<5&&(Data.movies.filter(a=>a.type===movieType).length)>0)? (Data.count.filter(b=> b<=(Data.movies.filter(a=>a.type===movieType).length))) : Data.count)                  
+                        movieType = item
+                        setnumberCount(((Data.movies.filter(a => a.type === movieType).length) < 5 && (Data.movies.filter(a => a.type === movieType).length) > 0) ? (Data.count.filter(b => b <= (Data.movies.filter(a => a.type === movieType).length))) : Data.count)
                     }
-                   
+
 
                 }}
                 buttonTextAfterSelection={(item, index) => {
-                   
-                   
+
+
                     if (props.whichDropdown === 1) {
                         selectcountitem = index
-                                      
-                                        
+
                     }
-
-
 
                     return item
                 }}
@@ -215,10 +200,7 @@ const Choose = (props) => {
             />
         </View>
     );
-    /* Choose.propTypes={
-         whichDropdown:PropTypes.number,
-     } 
-     */
+
 }
 
 const Goster = (props) => {
@@ -238,7 +220,7 @@ const Goster = (props) => {
     return (
 
 
-        <FlatList style={{ /*flexWrap: "wrap"*/  height: "80%" }}
+        <FlatList style={{ height: "80%" }}
             horizontal
 
             data={props.data}
@@ -250,14 +232,10 @@ const Goster = (props) => {
             removeClippedSubviews={true}
             maxToRenderPerBatch={1}
             initialNumToRender={3}
-            initialScrollIndex={0}//Başangıç noktası gosterilecek
-
+            initialScrollIndex={0}
             decelerationRate={0.95}
-            scrollsToTop={false}//Scrool çubuğu ile sürüklem özelliği
-            showsHorizontalScrollIndicator={false}//Scrool çubuğunun görünümünü kapatır
-
-            //keyExtractor={item=>item.id}
-
+            scrollsToTop={false}
+            showsHorizontalScrollIndicator={false}
             renderItem={({ item }) => {
 
 
@@ -265,28 +243,25 @@ const Goster = (props) => {
 
                     <RankCard name={item.name} images={item.images} items={item} />
                 )
-
-
-            }}
+            }
+            }
 
         />
     );
-
-
 
 }
 
 const RankCard = (props) => {
     const navigation = useNavigation();
     return (
-        
+
         <TouchableOpacity
             activeOpacity={1}
 
             onPress={() => { navigation.navigate("Info", props.items) }}>
 
             <View style={styles.rank_card_view}>
-            <Text style={{textAlign:"right",color:"red",fontSize: PixelRatio.getFontScale() * 20,fontWeight:"bold"}}>{props.items.category}</Text>
+                <Text style={{ textAlign: "right", color: "red", fontSize: PixelRatio.getFontScale() * 20, fontWeight: "bold" }}>{props.items.category}</Text>
                 <Image
                     resizeMode='stretch'
 
@@ -295,8 +270,8 @@ const RankCard = (props) => {
 
 
                 />
-                
-                <Text style={{ fontSize: PixelRatio.getFontScale() * 45, textAlign: "center", color: "white" , margin:2 }}>{props.name}</Text>
+
+                <Text style={{ fontSize: PixelRatio.getFontScale() * 45, textAlign: "center", color: "white", margin: 2 }}>{props.name}</Text>
             </View>
         </TouchableOpacity>
     )
@@ -304,8 +279,8 @@ const RankCard = (props) => {
 
 const random = (max = 1) => {
     let randomNumbers = [];
-    
-    
+
+
     let a = 0;
     if (selectcountitem + 1 > max) selectcountitem = max - 1
     for (let i = 0; i < selectcountitem + 1; i++) {
